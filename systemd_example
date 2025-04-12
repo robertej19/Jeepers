@@ -1,0 +1,28 @@
+[Unit]
+Description=Jeepers Service - Update repo, activate virtualenv, and run run_jeepers_creepers.py
+After=network.target
+
+[Service]
+Type=simple
+User=test
+WorkingDirectory=/home/test/jeepers
+# Update the repository on startup from GitHub (adjust branch if needed)
+ExecStartPre=/usr/bin/git pull origin main
+# Source the virtual environment and run the script using the virtualenv's Python in sudo mode
+ExecStart=/bin/bash -c 'source /home/test/test3/myenv/bin/activate && sudo /home/test/test3/myenv/bin/python /home/test/jeepers/run_jeepers_creepers.py'
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+
+
+
+
+
+
+
+
